@@ -1,0 +1,22 @@
+.form-horizontal .control-label {
+    text-align: left;
+}
+.form-control, select {
+	width: 100%;
+}
+/*
+tbody tr td:nth-child(1) {
+	text-align: left;
+	padding-left: 20px;
+	color: red;
+	border-bottom: 3px solid #ccc;
+}*/
+
+/*tbody tr td {
+	border: 1px solid #ccc;
+}
+
+tbody {
+	border: 1px solid #ccc;
+}
+*/

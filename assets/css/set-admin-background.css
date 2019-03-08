@@ -1,0 +1,25 @@
+body {
+	background: #36225D;
+	background-repeat: repeat;
+	background-size: auto auto;
+	background-size: 100% 100%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.auth__forms_container {
+	background: rgba(0,0,0,.85);
+	border-radius: 7px;
+	padding: 29px;
+}
+
+.auth_forms h2, .auth_forms label {
+	color: #fff;
+}
+
+.forgot_pass a {
+	color: #8d8888;
+}
+.img-fit-container{
+	width:100%;
+}
