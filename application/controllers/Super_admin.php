@@ -14,8 +14,6 @@ class Super_admin extends CI_Controller {
     	redirect('auth/logout');
 	}
 
-
-
 	public function _example_output($output = null)
 	{
 		$this->load->view('crud.php',(array)$output);
@@ -78,7 +76,7 @@ class Super_admin extends CI_Controller {
 	
 	public function create_bill()
 	{
-			
+
 		$data['parties'] = Models\Parties::get();
 		
 		$data['items'] = Models\Items::get();
@@ -87,7 +85,7 @@ class Super_admin extends CI_Controller {
 			base_url('assets/js/jquery-ui.min.js'),
 			base_url('assets/js/billing-form.js'),
 		];
-
+    
 		$data['css_files'] = [
 			base_url('assets/css/jquery-ui.min.css')
 		];
@@ -99,6 +97,41 @@ class Super_admin extends CI_Controller {
 		$this->load->view('super_admin/create_bill',$data);
 
 	} 
+
+	function bill_preview(){
+
+		if(empty($_POST))
+			return 404;
+
+		if(empty($_POST['party']) && empty($_POST['party_name_for_addition'])){
+			failure('Party Name is required');
+			redirect('super_admin/create_bill');
+		}
+
+		$party_name = '';
+		if(!empty($_POST['party_name_for_addition']))
+			$party_name = trim($_POST['party_name_for_addition']);
+
+    else if(!empty($_POST['party']))
+			$party_name = trim($_POST['party']);
+		
+		$items = $_POST['item'];
+		foreach ($items as $key => $item) {
+      			
+      			if($item['item_id']<=0)
+      				continue;
+
+				$items[$key]['item_details'] = Models\Items::find($item['item_id']);
+
+		}		
+		
+		$this->load->view('super_admin/bill_preview',[
+			'data' => $_POST,
+			'items' => $items,
+			'party_name' => $party_name
+		]);
+		
+	}
 
 	
 

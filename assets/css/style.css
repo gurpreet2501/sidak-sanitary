@@ -4,6 +4,11 @@
 .form-control, select {
 	width: 100%;
 }
+
+.chosen-results li {
+	border-bottom: 1px solid #888;
+}
+
 /*
 tbody tr td:nth-child(1) {
 	text-align: left;

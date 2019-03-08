@@ -1,6 +1,6 @@
 <?php $this->load->view('admin/partials/header'); ?>
 
-<form>
+<form action="<?=site_url('super_admin/bill_preview')?>" method="post" class="validate">
 	<div class="hr-background-img" id="billing_form">
 		<div class="row">
 		<div class="col-xs-12">
@@ -12,8 +12,8 @@
 					<div class="col-md-4">
 							<div class="form-group">
 								<label>Party Name</label>
-								<select class="form-control chosen-select">
-														<option value=NULL>-Select Party-</option>
+								<select class="form-control chosen-select required" name="party">
+														<option selected="true" value="NULL" disabled="true">-Select Party-</option>
 									<?php foreach ($parties as $key => $party): ?>
 														<option><?=$party->name?></option>
 									<?php endforeach ?>
@@ -22,7 +22,7 @@
 							</div>						
 							<div class="form-group">
 								<label>Bill Date</label>
-								<input type="text" name="bill_date" class="_datepicker form-control" value="<?=date('Y-m-d')?>" />
+								<input type="text" name="bill_date" class="_datepicker form-control required" value="<?=date('Y-m-d')?>" />
 							</div>
 							<div class="form-group">
 								<label>Freight Charges</label>
@@ -31,21 +31,30 @@
 					</div>
 				</div>
 				<!-- Items -->
-
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-4"><h5>Select Items</h5></div>
+						<div class="col-md-2"><h5>Items Count</h5></div>
+						<div class="col-md-2"><h5>Gst</h5></div>
+						<div class="col-md-2"><h5>Discount</h5></div>
+						<div class="col-md-1"></div>
+					</div>
 					<div class="row"  v-for="n in items_count" v-model="items_count">
 							<div class="col-md-1"></div>
 							<div class="col-xs-4">
 								<div class="form-group">
-									<select class="form-control chosen-select" v-bind:name="'item['+n+'][item_id]'" >
+									<select class="form-control chosen-select required"  v-bind:name="'item['+n+'][item_id]'">
 									   <option selected disabled>-Select Items-</option>
-										<option  v-bind:value="item.id" v-for='item in allItems'>{{item.name}}</option>
+										 <option  v-bind:value="item.id" v-for='item in allItems'>
+										 		{{item.name }}
+										 	</option>
 									</select>
 								</div>
 							</div>
 						
 							<div class="col-xs-2">
 								<div class="form-group">
-									<input class="form-control" type="number" v-bind:name="'item['+n+'][items_count]'" placeholder="Items Count"/>
+									<input class="form-control required" type="number" v-bind:name="'item['+n+'][items_count]'" placeholder="Items Count"/>
 								</div>
 							</div>
 
