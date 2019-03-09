@@ -28,7 +28,8 @@ class Super_admin extends CI_Controller {
 
 		public function add_items()
 	{
-			
+
+
 			$crud = new grocery_CRUD();
 			$crud->set_theme('bootstrap');
 			$crud->columns('name','sku','color_id','price','stock');
@@ -80,7 +81,7 @@ class Super_admin extends CI_Controller {
 		$data['parties'] = Models\Parties::get();
 		
 		$data['items'] = Models\Items::get();
-
+	
 		$data['js_files'] = [
 			base_url('assets/js/jquery-ui.min.js'),
 			base_url('assets/js/billing-form.js'),
@@ -126,14 +127,21 @@ class Super_admin extends CI_Controller {
 		}		
 		
 		$this->load->view('super_admin/bill_preview',[
-			'data' => $_POST,
 			'items' => $items,
-			'party_name' => $party_name
+			'party_name' => $party_name,
+			'bill_date' => $_POST['bill_date']
 		]);
 		
 	}
 
-	
+	function generate_bill(){
+		echo "<pre>";
+		print_r($_POST);
+		exit;
+
+		
+
+	}
 
 	function on_update_encrypt_password_callback($post_array){
 
