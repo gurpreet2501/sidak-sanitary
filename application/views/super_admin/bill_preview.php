@@ -54,6 +54,8 @@
 						<input type="hidden" name="items[<?=$key?>][item_sku]" value="<?=$itemm['item_details']->sku?>">
 						<input type="hidden" name="bill_date" value="<?=$bill_date?>">
 						<input type="hidden" name="party_name" value="<?=$party_name?>">
+						<input type="hidden" name="freight_charges" value="<?=$freight_charges?>">
+						<input type="hidden" name="party_id" value="<?=$party_id?>">
 						<?=$itemm['item_details']->name?>
 							
 					</td>

@@ -15,7 +15,7 @@
 								<select class="form-control chosen-select required" name="party">
 														<option selected="true" value="NULL" disabled="true">-Select Party-</option>
 									<?php foreach ($parties as $key => $party): ?>
-														<option><?=$party->name?></option>
+														<option value="<?=$party->id?>"><?=$party->name?></option>
 									<?php endforeach ?>
 								</select>
 								<input id="enter_party" type="text" name="party_name_for_addition" class="form-control" placeholder="Party Name if not found" />

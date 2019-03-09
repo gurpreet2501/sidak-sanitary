@@ -108,14 +108,33 @@ class Super_admin extends CI_Controller {
 			failure('Party Name is required');
 			redirect('super_admin/create_bill');
 		}
-
+		$freight_charges = 0;
+		if(!empty($_POST['freight_charges']))
+			$freight_charges = $_POST['freight_charges'];
+		$party_id = 0;
 		$party_name = '';
-		if(!empty($_POST['party_name_for_addition']))
-			$party_name = trim($_POST['party_name_for_addition']);
-
-    else if(!empty($_POST['party']))
-			$party_name = trim($_POST['party']);
+    if(!empty($_POST['party'])){
+			$party_id = $_POST['party'];
+			$par = Models\Parties::find($party_id);
+			$party_name = $par->name; 
 		
+    }
+		
+		else if(!empty($_POST['party_name_for_addition'])){
+
+			$party_name = trim($_POST['party_name_for_addition']);
+			
+			$resp = Models\Parties::where('name', $party_name)->first();
+
+			if(!$resp)
+				$resp = Models\Parties::create([
+					'name' => $party_name
+				]);
+
+			$party_id = $resp->id;
+		}
+
+	
 		$items = $_POST['item'];
 		foreach ($items as $key => $item) {
       			
@@ -129,18 +148,30 @@ class Super_admin extends CI_Controller {
 		$this->load->view('super_admin/bill_preview',[
 			'items' => $items,
 			'party_name' => $party_name,
+			'party_id' => $party_id,
+			'freight_charges' => $freight_charges,
 			'bill_date' => $_POST['bill_date']
 		]);
 		
 	}
 
+	public function bill_printing($bill_id){
+	
+		$bill_details = Models\Bill::with('billingItems.items')->find($bill_id);
+		$data['css_files'] = [base_url('assets/css/billing/style.css')];
+		$data['bill_details'] = $bill_details;
+		 $this->load->view('billing/billing-template', $data);
+	
+	}
+
 	function generate_bill(){
-		echo "<pre>";
-		print_r($_POST);
-		exit;
+			
+		 if(empty($_POST))
+		  return 404;
 
-		
-
+		 $bill_id = bill_processing($_POST);
+	
+		 return redirect('super_admin/bill_printing/'.$bill_id);
 	}
 
 	function on_update_encrypt_password_callback($post_array){
