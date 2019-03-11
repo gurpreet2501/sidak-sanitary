@@ -781,8 +781,8 @@ hr {
 
 .btn-success {
 	color: #fff;
-	background-color: #15ca20;
-	border-color: #15ca20
+	background-color: #5CB85C;
+	border-color: #5CB85C
 }
 .btn-success:hover {
 	color: #fff;
@@ -808,13 +808,13 @@ hr {
 
 .btn-info {
 	color: #fff;
-	background-color: #0dceec;
-	border-color: #0dceec
+	background-color: #138496;
+	border-color: #138496
 }
 .btn-info:hover {
 	color: #fff;
-	background-color: #138496;
-	border-color: #117a8b
+	background-color: #1AB3C8;
+	border-color: #1AB3C8
 }
 .btn-info.focus, .btn-info:focus {
 	box-shadow:none;
@@ -2203,7 +2203,7 @@ hr {
 }
 
 .error {
-    color: #ff0000;
+    color: #ffffff;
 }
 label {
     color: #6b6b6b;
@@ -2401,8 +2401,10 @@ table.grid td {
     padding-left: 1.5rem;
 }
 .navbar-inverse {
-  background-color: #152647;
-  border-color: #080808;
+
+    background-color: #666;
+    border-color: #080808;
+
 }
 .navbar-inverse .navbar-brand {
 
@@ -2430,7 +2432,9 @@ table.grid td {
     border-right: 0;
     border-left: 0;
 }
-
+.table td, .table th {
+    white-space: nowrap;
+}
 .table th {
     font-weight: 600;
 }
@@ -2605,11 +2609,11 @@ table.grid td {
 .alert-success {
     color: #ffffff;
     padding: 8px;
-    background-color: #15ca20;
-    border-color: #15ca20;
+    background-color: #4D8A68;
+    border-color: #4D8A68;
 }
 .alert-success .alert-link {
-    color: #7bff2b;
+    color: #fff;
 }
 
 .card {
@@ -4078,6 +4082,13 @@ table.grid td {
     transition: width .6s ease;
 }
 
+#report-success p {
+    color: #fff;
+}
+
+#report-success p a {
+    color: #ccc;
+}
 
 /* Background Colors */
 .bg-purple {
@@ -4087,7 +4098,7 @@ table.grid td {
     background-color: #008cff!important;
 }
 .bg-success {
-    background-color: #15ca20!important;
+    background-color: #5CB85C!important;
 }
 .bg-info {
     background-color: #0dceec!important;
@@ -4096,7 +4107,7 @@ table.grid td {
     background-color: #75808a!important;
 }
 .bg-danger {
-    background-color: #fd3550!important;
+    background-color: #D9534F!important;
 }
 .bg-dark {
     background-color: #223035!important;

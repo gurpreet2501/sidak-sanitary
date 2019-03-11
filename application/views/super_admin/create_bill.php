@@ -18,8 +18,24 @@
 														<option value="<?=$party->id?>"><?=$party->name?></option>
 									<?php endforeach ?>
 								</select>
-								<input id="enter_party" type="text" name="party_name_for_addition" class="form-control" placeholder="Party Name if not found" />
-							</div>						
+								
+							</div>		
+
+							  <div id="enter_party">
+
+									<div class="form-group">
+										<input type="text" name="party_name_for_addition" class="form-control" placeholder="Party Name if not found" />
+									</div>		
+									
+									<div class="form-group">
+										<label>Phone No</label>
+										<input class="form-control" type="text" name="phone"/>
+									</div>				
+									<div class="form-group">
+										<label>Address</label>
+										<input class="form-control" type="text" name="address"/>
+									</div>
+							</div>				
 							<div class="form-group">
 								<label>Bill Date</label>
 								<input type="text" name="bill_date" class="_datepicker form-control required" value="<?=date('Y-m-d')?>" />

@@ -3,6 +3,10 @@
       <a href='<?=site_url('/super_admin/index')?>'>Dashboard</a> 
     </li>
     <li class="">
+      <a href='<?=site_url('/super_admin/add_party')?>'>Add Parties</a> 
+    </li>
+
+    <li class="">
       <a href='<?=site_url('/super_admin/create_bill')?>'>Create Bill</a> 
     </li>
 

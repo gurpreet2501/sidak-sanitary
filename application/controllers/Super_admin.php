@@ -99,6 +99,18 @@ class Super_admin extends CI_Controller {
 
 	} 
 
+	function add_party(){
+			$crud = new grocery_CRUD();
+			$crud->set_theme('bootstrap');
+			$crud->set_table('sidak123_parties');
+			$crud->required_fields(['name','phone','address']);
+			$crud->field_type('created_at','hidden', date('Y-m-d H:i:s'));
+			$crud->field_type('updated_at','hidden', date('Y-m-d H:i:s'));
+	    $output = $crud->render();
+			$this->_example_output($output);
+	}
+
+
 	function bill_preview(){
 
 		if(empty($_POST))
@@ -128,7 +140,9 @@ class Super_admin extends CI_Controller {
 
 			if(!$resp)
 				$resp = Models\Parties::create([
-					'name' => $party_name
+					'name' => $party_name,
+					'phone' => $_POST['phone'],
+					'address' => $_POST['address']
 				]);
 
 			$party_id = $resp->id;
