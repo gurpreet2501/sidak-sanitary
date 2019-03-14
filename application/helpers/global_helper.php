@@ -8,12 +8,23 @@ function calculateGst($sub_total, $gst_in_per){
 	
 }
 
+
+
 function calculateDiscount($sub_total, $discount){
 	if(empty($discount))
 		return 0.00;
 
 	return (float)($sub_total*$discount)/100.00;
 	
+}
+
+
+function stock_manipulation($bill_details){
+
+    foreach ($bill_details->billingItems as $key => $item) {
+        Models\Items::find($item->item_id);
+    }
+    
 }
 
 

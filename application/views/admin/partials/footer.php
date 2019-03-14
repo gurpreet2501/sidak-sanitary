@@ -75,8 +75,14 @@ jQuery(function(){
   //If value selected in chosen file. Then hide the enter_party box
 
   $(".chosen-select").chosen().change(function(key,val) {
+   
+  });
+
+  //Remove Party/ phone and address fields on party select when party already exists
+  
+  $("#party_dd").chosen().change(function(key,val) {
     if(val.selected.length)
-        $('#enter_party').hide();  
+        $('.hide_party_info').hide();  
   });
 
   var d = new Date();

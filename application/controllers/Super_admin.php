@@ -28,8 +28,6 @@ class Super_admin extends CI_Controller {
 
 		public function add_items()
 	{
-
-
 			$crud = new grocery_CRUD();
 			$crud->set_theme('bootstrap');
 			$crud->columns('name','sku','color_id','price','stock');
@@ -150,6 +148,9 @@ class Super_admin extends CI_Controller {
 
 	
 		$items = $_POST['item'];
+		
+		// checkIfStockExists($items);
+
 		foreach ($items as $key => $item) {
       			
       			if($item['item_id']<=0)
@@ -174,6 +175,7 @@ class Super_admin extends CI_Controller {
 		$bill_details = Models\Bill::with('billingItems.items')->find($bill_id);
 		$data['css_files'] = [base_url('assets/css/billing/style.css')];
 		$data['bill_details'] = $bill_details;
+		
 		 $this->load->view('billing/billing-template', $data);
 	
 	}

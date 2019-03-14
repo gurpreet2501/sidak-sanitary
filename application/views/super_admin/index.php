@@ -2,7 +2,7 @@
 <div class="hr-background-img">
 	<div class="row">
 		<div class="col-xs-12">
-			<h1 class="text-center">WELCOME TO SIDAK BATH</h1>
+			<h1 class="text-center">SIDAK INDUSTRIES</h1>
 		</div>
 	</div>	
 </div>
