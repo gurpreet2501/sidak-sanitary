@@ -149,7 +149,7 @@ class Super_admin extends CI_Controller {
 	
 		$items = $_POST['item'];
 		
-		// checkIfStockExists($items);
+		
 
 		foreach ($items as $key => $item) {
       			
@@ -184,7 +184,7 @@ class Super_admin extends CI_Controller {
 			
 		 if(empty($_POST))
 		  return 404;
-
+		
 		 $bill_id = bill_processing($_POST);
 	
 		 return redirect('super_admin/bill_printing/'.$bill_id);

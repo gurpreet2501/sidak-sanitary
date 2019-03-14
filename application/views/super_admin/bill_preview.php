@@ -19,9 +19,11 @@
 	<div class="col-md-12">
 		<table class="table table-hover">
 			<tr>
+				<td>#ID</td>
 				<td>Item Name</td>
 				<td>Price (per/piece)</td>
-				<td>Quantity(in pieces)</td>
+				<td>Available Stock</td>
+				<td>Quantity Ordered(in pieces)</td>
 				<td>Price X Qty</td>
 				<td>GST in Percentage</td>
 				<td>Discount in Percentage</td>
@@ -31,6 +33,7 @@
 			<?php 
 				$grand_total = 0;
 			  foreach ($items as $key => $itemm): 
+			  
 					
 					$temp_price = $itemm['item_details']->price*$itemm['items_count'];
 					
@@ -55,14 +58,29 @@
 						<input type="hidden" name="party_name" value="<?=$party_name?>">
 						<input type="hidden" name="freight_charges" value="<?=$freight_charges?>">
 						<input type="hidden" name="party_id" value="<?=$party_id?>">
+					<td>
+						<?=$itemm['item_details']->id?>
+					</td>
 					<td class="item-name-col">
-						 <?=wordwrap($itemm['item_details']->name,35,"<br>\n")?>
+						 <span class='badge badge-danger'><?=wordwrap($itemm['item_details']->name,35,"<br>\n")?></span>
 							
 					</td>
 					<td class="item_price">
 						
 						<?=$itemm['item_details']->price?>
 							
+					</td>
+					<td>
+						 
+						 <?php 
+						 		if($itemm['item_details']->stock <=10 && $itemm['item_details']->stock >0)
+						 			$badge = 'badge-warning';
+						 		else if($itemm['item_details']->stock == 0)			
+						 			$badge = 'badge-danger';
+						 		else 
+						 			$badge = 'badge-success';
+						 		?>
+						<span class="badge <?=$badge?>"><?=$itemm['item_details']->stock?></span>
 					</td>
 					<td class="item_qty">
 						<input type="text" name="items[<?=$key?>][quantity_ordered]" id="<?=$itemm['item_details']->id?>" value="<?=$itemm['items_count']?>"/>

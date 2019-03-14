@@ -34,7 +34,7 @@ function bill_processing($data){
 	$total = 0;
 
 	foreach ($data['items'] as $key => $item) {
-				$stotal = $item['item_price']*$item['quantity_ordered'];
+		$stotal = $item['item_price']*$item['quantity_ordered'];
 		$discount = calculateDiscount($stotal,$item['discount']);
 		$gst = calculateGst($stotal,$item['gst']);
 		$total = $total + $stotal + $gst - $discount;
@@ -49,17 +49,27 @@ function bill_processing($data){
 	]);
 
 	foreach ($data['items'] as $key => $item) {
+        
+        $new_stock = $item['item_stock'] - $item['quantity_ordered'];
+        
+        if($new_stock<0)
+            $new_stock = 0;
 
-		Models\BillingItems::create([
-			'item_name' => $item['item_name'],
-			'item_id' => $item['item_id'],
-			'quantity_ordered' => $item['quantity_ordered'],
-			'gst_in_percentage' => $item['gst'],
-			'discount_in_percentage' => $item['discount'],
-			'bill_id' => $bill->id,
-			'price' => $item['item_price'],
-		]);
+    		Models\BillingItems::create([
+    			'item_name' => $item['item_name'],
+    			'item_id' => $item['item_id'],
+    			'quantity_ordered' => $item['quantity_ordered'],
+    			'gst_in_percentage' => $item['gst'],
+    			'discount_in_percentage' => $item['discount'],
+    			'bill_id' => $bill->id,
+    			'price' => $item['item_price'],
+    		]);
 
+         Models\Items::where('id',$item['item_id'])->update([
+            'stock' => $new_stock
+        ]);
+        
+     
 	}
 
 	return $bill->id;
